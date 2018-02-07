@@ -22,6 +22,7 @@ ADD $URL_ECLIPSE /tmp
 RUN echo 'Run script to install eclipse' && \
     cd /tmp && \
     chmod +x ./build_install_eclipse.sh && \
+    sync && \
     ./build_install_eclipse.sh $URL_ECLIPSE
 
 #Install ATL and Accelo Plugins
