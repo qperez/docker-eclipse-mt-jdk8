@@ -25,10 +25,11 @@ RUN echo 'Run script to install eclipse' && \
     sync && \
     ./build_install_eclipse.sh $URL_ECLIPSE
 
-#Install ATL and Accelo Plugins
+#Install ATL, Accelo and Papyrus Plugins
 RUN cd /opt/eclipse && \
     ./eclipse -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/oxygen/ -installIU org.eclipse.acceleo.feature.group && \
-    ./eclipse -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/oxygen/ -installIU org.eclipse.m2m.atl.feature.group
+    ./eclipse -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/releases/oxygen/ -installIU org.eclipse.m2m.atl.feature.group && \
+    ./eclipse -application org.eclipse.equinox.p2.director -repository http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen,http://download.eclipse.org/modeling/mdt/papyrus/components/bpmn/oxygen,http://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/oxygen,http://download.eclipse.org/releases/oxygen -installIU org.eclipse.papyrus.sdk.feature.feature.group,org.eclipse.papyrus.toolsmiths.feature.feature.group,org.eclipse.papyrus.sysml14.feature.feature.group,org.eclipse.papyrus.bpmn.feature.feature.group
 
 #Set rights for user : developer
 RUN chown -R 1000:1000 /opt/eclipse

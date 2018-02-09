@@ -9,6 +9,12 @@ Run [Eclipse Oxygen 2 Modeling Tools ](https://www.eclipse.org/downloads/package
 * Eclipse Oxygen 2 Modeling Tools 
     * Acceleo plugin
     * ATL plugin
+    * Papyrus plugins
+        * Papyrus SysML 1.4
+        * Papyrus SDK 
+        * Papyrus BPMN
+        * Papyrus ToolSmiths
+        
     
 ## How to start ? 
 I have simplified the startup as much as possible,
@@ -21,7 +27,12 @@ $ xhost +local:docker
 After that, all you have to do is start the container with script provided : 
 ```shell
 $ chmod +x run-eclipse-mt-jdk8.sh
-$ ./run-eclipse-mt-jdk8.sh
+$ ./run-eclipse-mt-jdk8.sh [tag_name]
+```
+You can precise the version of Eclipse with the parameter '_[tag_name]_', by default without the param, the tag name is 
+the latest image built.
+```shell
+$ ./run-eclipse-mt-jdk8.sh oxygen
 ```
 
 ## How it works ?  
@@ -46,7 +57,7 @@ The docker run command used in the script is the following :
    -v  "$CONFIG_DIR /home/developer/.eclipse" \
    -v  "${HOME}/.Xauthority:/home/developer/.Xauthority" \
    -v  "$WORKSPACE_DIR:/home/developer/eclipse-workspace" \
-   --rm -it --net=host qperez/eclipse-mt-jdk8
+   --rm -it --net=host qperez/eclipse-mt-jdk8:${TAG}
  ```
 
 
@@ -59,17 +70,17 @@ behaviors of 'ADD' command with local and remote compressed file : [https://gith
 You can build your own image with a your local Eclipse (.tar.gz format) or with an URL to download
 Eclipse (.tar.gz).
 
-### Default build with Eclipse Modeling Oxygen 2
+#### Default build with Eclipse Modeling Oxygen 2
  ```shell
 $ docker build -t [image_name]:[tag_name] .
  ```
 
-### Build with a local image Eclipse
+#### Build with a local image Eclipse
  ```shell
 $ docker build -t [image_name]:[tag_name] --build-arg URL_ECLIPSE=[directory .tar.gz eclipse] .
  ```
 
-### Build with an URL to download Eclipse
+#### Build with an URL to download Eclipse
  ```shell
 $ docker build -t [image_name]:[tag_name] --build-arg URL_ECLIPSE=[url to download eclipse] .
  ```

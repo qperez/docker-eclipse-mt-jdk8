@@ -1,6 +1,7 @@
 #!/bin/bash
 CONFIG_DIR=${HOME}/eclipse-mt-jdk8-config
 WORKSPACE_DIR=${HOME}/eclipse-mt-jdk8-workspace
+TAG=${1:-latest}
 
 ##########################################################################
 # Before run this script please run this command : $ xhost +local:docker #
@@ -24,4 +25,4 @@ docker run \
 -v  "$CONFIG_DIR /home/developer/.eclipse" \
 -v  "${HOME}/.Xauthority:/home/developer/.Xauthority" \
 -v  "$WORKSPACE_DIR:/home/developer/eclipse-workspace" \
---rm -it --net=host qperez/eclipse-mt-jdk8
+--rm -it --net=host qperez/eclipse-mt-jdk8:${TAG}
