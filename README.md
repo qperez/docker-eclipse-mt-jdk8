@@ -1,7 +1,10 @@
 # docker-eclipse-mt-jdk8
 
-Run [Eclipse Oxygen 2 Modeling Tools ](https://www.eclipse.org/downloads/packages/release/Oxygen/2) with Acceleo and ATL plugins inside a container :D !
+Run [Eclipse Oxygen 2 Modeling Tools ](https://www.eclipse.org/downloads/packages/release/Oxygen/2) with Acceleo, ATL and Papyrus plugins inside a container :D !
 
+## Prerequisites
+* [Docker](https://www.docker.com/community-edition)
+* On Mac : [XQuartz](https://www.xquartz.org/)
 
 ## Image configuration :
 * Based on Ubuntu 14.04
@@ -23,8 +26,8 @@ the connexion of the X server between your machine and the container :
 ```shell
 $ xhost +local:docker
 ```
-
-After that, all you have to do is start the container with script provided : 
+### Linux 
+After that, all you have to do is start the container with script provided for LINUX : 
 ```shell
 $ chmod +x run-eclipse-mt-jdk8.sh
 $ ./run-eclipse-mt-jdk8.sh [tag_name]
@@ -33,6 +36,23 @@ You can precise the version of Eclipse with the parameter '_[tag_name]_', by def
 the latest image built.
 ```shell
 $ ./run-eclipse-mt-jdk8.sh oxygen
+```
+
+### Mac
+To use this image, you must have XQuartz installed on your machine.
+To install and launch XQuartz, see here : [https://cntnr.io/running-guis-with-docker-on-mac-os-x-a14df6a76efc](https://cntnr.io/running-guis-with-docker-on-mac-os-x-a14df6a76efc)
+
+![XQuartz configuration](https://cdn-images-1.medium.com/max/800/1*t9RTn9w0PwQAMtK1yrq1GQ.png)
+
+After that, all you have to do is start the container with script provided for MAC: 
+```shell
+$ chmod +x run-eclipse-mt-jdk8-mac.sh
+$ ./run-eclipse-mt-jdk8-mac.sh [tag_name] <IP_XQUARTZ>
+```
+You can precise the version of Eclipse with the parameter '_[tag_name]_', by default without the param, the tag name is 
+the latest image built.
+```shell
+$ ./run-eclipse-mt-jdk8.sh oxygen 192.168.0.80
 ```
 
 ## How it works ?  
@@ -71,19 +91,22 @@ You can build your own image with a your local Eclipse (.tar.gz format) or with 
 Eclipse (.tar.gz).
 
 #### Default build with Eclipse Modeling Oxygen 2
+The command is the following : 
  ```shell
 $ docker build -t [image_name]:[tag_name] .
  ```
 
 #### Build with a local image Eclipse
+The command is the following : 
  ```shell
 $ docker build -t [image_name]:[tag_name] --build-arg URL_ECLIPSE=[directory .tar.gz eclipse] .
  ```
 
 #### Build with an URL to download Eclipse
+The command is the following : 
  ```shell
 $ docker build -t [image_name]:[tag_name] --build-arg URL_ECLIPSE=[url to download eclipse] .
  ```
 
 ## End's meme
-![alt text](http://blog.cloud66.com/content/images/2015/05/56291573.jpg)
+![Meme container](http://blog.cloud66.com/content/images/2015/05/56291573.jpg)
