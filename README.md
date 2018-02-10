@@ -1,6 +1,14 @@
 # docker-eclipse-mt-jdk8
 
-Run [Eclipse Oxygen 2 Modeling Tools ](https://www.eclipse.org/downloads/packages/release/Oxygen/2) with Acceleo, ATL and Papyrus plugins inside a container :D !
+Run [Eclipse Oxygen 2 Modeling Tools ](https://www.eclipse.org/downloads/packages/release/Oxygen/2) with Acceleo, ATL and Papyrus plugins inside a container :whale: !
+
+## Available tags
+```shell
+oxygen
+```
+```shell
+latest
+```
 
 ## Prerequisites
 * [Docker](https://www.docker.com/community-edition)
@@ -20,13 +28,14 @@ Run [Eclipse Oxygen 2 Modeling Tools ](https://www.eclipse.org/downloads/package
         
     
 ## How to start ? 
-I have simplified the startup as much as possible,
-for the first startup you have to execute the following command to authorize 
+I have simplified the startup as much as possible with a script. :ok_hand: 
+
+### Linux 
+For the first startup you have to execute the following command to authorize 
 the connexion of the X server between your machine and the container : 
 ```shell
 $ xhost +local:docker
 ```
-### Linux 
 After that, all you have to do is start the container with script provided for LINUX : 
 ```shell
 $ chmod +x run-eclipse-mt-jdk8.sh
@@ -56,8 +65,7 @@ $ ./run-eclipse-mt-jdk8.sh oxygen 192.168.0.80
 ```
 
 ## How it works ?  
-File sharing is done with volumes between your machine and the container, 
-the '_docker run_' command present in the script '_run-eclipse-mt-jdk8.sh_' is in charge of that.
+File sharing is done with volumes between your machine and the container, the '_docker run_' command present in the script '_run-eclipse-mt-jdk8.sh_' is in charge of that.
 The script create two directories inside your home to save your project workspace and the settings of Eclipse.
 ```shell
 ###################                              #####################
@@ -84,7 +92,7 @@ The docker run command used in the script is the following :
 ## How to create my own image ? 
 You can create your own image of docker eclipse with these two files : 
 * Dockerfile
-* build_install_eclipse --> Install Eclipse in the /opt directory, it's a workaround about the both
+* build_install_eclipse.sh :arrow_right: Install Eclipse in the /opt directory, it's a workaround about the both
 behaviors of 'ADD' command with local and remote compressed file : [https://github.com/moby/moby/issues/2369](https://github.com/moby/moby/issues/2369)
 
 You can build your own image with a your local Eclipse (.tar.gz format) or with an URL to download
@@ -108,5 +116,6 @@ The command is the following :
 $ docker build -t [image_name]:[tag_name] --build-arg URL_ECLIPSE=[url to download eclipse] .
  ```
 
-## End's meme
+## End's memes :trollface:
 ![Meme container](http://blog.cloud66.com/content/images/2015/05/56291573.jpg)
+![Meme_container](https://thinkwhere1.files.wordpress.com/2016/07/docker_future-e1468491725978.jpg?w=613&h=345)
